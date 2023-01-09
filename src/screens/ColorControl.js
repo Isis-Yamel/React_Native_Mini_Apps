@@ -3,21 +3,21 @@ import { View } from 'react-native';
 import ColorControler from '../components/colorControler';
 
 const reducer = (state, action) => {
-  switch (action.colorToChange) {
-    case 'red':
-      return state.red + action.amount > 255 || state.red + action.amount < 0
+  switch (action.type) {
+    case 'CHANGE_RED':
+      return state.red + action.payload > 255 || state.red + action.payload < 0
         ? state
-        : {...state, red: state.red + action.amount};
+        : {...state, red: state.red + action.payload};
 
-    case 'green':
-      return state.green + action.amount > 255 || state.green + action.amount < 0
+    case 'CHANGE_GREEN':
+      return state.green + action.payload > 255 || state.green + action.payload < 0
         ? state
-        : {...state, green: state.green + action.amount};
+        : {...state, green: state.green + action.payload};
 
-    case 'blue':
-      return state.blue + action.amount > 255 || state.blue + action.amount < 0
+    case 'CHANGE_BLUE':
+      return state.blue + action.payload > 255 || state.blue + action.payload < 0
         ? state
-        : {...state, blue: state.blue + action.amount};
+        : {...state, blue: state.blue + action.payload};
   
     default:
       return state;
@@ -40,18 +40,18 @@ const ColorControl = () => {
   return (
     <View>
       <ColorControler 
-        onDecrease={() => dispatch({ colorToChange: 'red', amount: COLOR_CHANGE * -1 })}
-        onIncrease={() => dispatch({ colorToChange: 'red', amount: COLOR_CHANGE })}
+        onDecrease={() => dispatch({ type: 'CHANGE_RED', payload: COLOR_CHANGE * -1 })}
+        onIncrease={() => dispatch({ type: 'CHANGE_RED', payload: COLOR_CHANGE })}
         color="red"
       />
       <ColorControler 
-        onDecrease={() => dispatch({ colorToChange: 'green', amount: COLOR_CHANGE * -1 })}
-        onIncrease={() => dispatch({ colorToChange: 'green', amount: COLOR_CHANGE })}
+        onDecrease={() => dispatch({ type: 'CHANGE_GREEN', payload: COLOR_CHANGE * -1 })}
+        onIncrease={() => dispatch({ type: 'CHANGE_GREEN', payload: COLOR_CHANGE })}
         color="green"
       />
       <ColorControler 
-        onDecrease={() => dispatch({ colorToChange: 'blue', amount: COLOR_CHANGE * -1 })}
-        onIncrease={() => dispatch({ colorToChange: 'blue', amount: COLOR_CHANGE })}
+        onDecrease={() => dispatch({ type: 'CHANGE_BLUE', payload: COLOR_CHANGE * -1 })}
+        onIncrease={() => dispatch({ type: 'CHANGE_BLUE', payload: COLOR_CHANGE })}
         color="blue"
       />
       <View style={{ width: 100, height: 100, backgroundColor: `rgb(${red}, ${green}, ${blue})` }} />
