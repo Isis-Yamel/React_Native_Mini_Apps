@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet } from 'react-native';
+import { Text, View, Image } from 'react-native';
 
 const ImageCard = ({title, imageSrc}) => {
   return (
@@ -9,8 +9,5 @@ const ImageCard = ({title, imageSrc}) => {
     </View>
   )
 };
-
-const styles = StyleSheet.create({
-});
 
 export default ImageCard;
